@@ -1,4 +1,3 @@
-SELECT
-    i.InvoiceId,
+SELECT DISTINCT i.BillingCountry,
     i.BillingCountry
 FROM Invoice i
