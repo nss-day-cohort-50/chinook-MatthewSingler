@@ -11,10 +11,10 @@ ON i.CustomerId = c.CustomerId
 WHERE e.Title = 'Sales Support Agent'
 GROUP BY e.FirstName
 
-SELECT Employee.FirstName, Employee.LastName, COUNT(Invoice.CustomerId) AS TotalSAles
-FROM Customer
-    Left JOIN Employee
-      ON Customer.SupportRepId = Employee.EmployeeId
-     Left JOIN Invoice
-      ON Invoice.CustomerId = Customer.CustomerId
-    GROUP BY Employee.EmployeeId
+select (e.FirstName ||' '|| e.LastName) as employee_name, sum(total) as total_sales
+from Employee e
+    join Customer c
+        on e.EmployeeId = c.supportRepId
+    join Invoice i
+        on i.customerId = c.customerId
+group by employee_name
